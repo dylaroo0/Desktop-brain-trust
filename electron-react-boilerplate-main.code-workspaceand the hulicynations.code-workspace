@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../Documents/BrainTrust_circle-main/BrainTrust_circle-main/.kiro/specs/braintrust-desktop-greenfield"
+		},
+		{
+			"path": "../../Downloads/servers-main"
+		},
+		{
+			"path": "../POST-FOLK/BrainTrust_circle-main/BrainTrust_circle-main/.kiro/Web app bring trust circle could be some good code"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			".eslintrc": "jsonc",
+			".prettierrc": "jsonc",
+			".eslintignore": "ignore"
+		},
+		"javascript.validate.enable": false,
+		"javascript.format.enable": false,
+		"typescript.format.enable": false
+	}
+}
