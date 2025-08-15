@@ -1,0 +1,78 @@
+# BrainTrust Circle — UX Expert Note (Design Iterations)
+
+## Purpose
+Concise UX audit + information architecture for the desktop app foundation. Outcome: confirm layout, then proceed to theme and component build.
+
+## Quick audit of current design system (default_ui_darkmode.css)
+- Strengths
+  - Uses OKLCH tokens for core colors, spacing, typography; responsive utilities; focus-visible; reduced motion variant.
+  - Solid primitives: cards, buttons, inputs, tabs, badges, list, empty states.
+- Issues to address (before component build)
+  - Replace hardcoded hex in tabs (e.g., `#f8f9fa`, `#1a1a1a`) with tokens to keep themes coherent.
+  - Re-evaluate `--primary`: currently near-white; primary on dark should read as accent, not almost-white. Propose moving accent/primary to a non-blue hue (avoid indigo/blue), e.g., violet/amber/emerald.
+  - Ensure focus ring meets 3:1 on dark backgrounds; current `--ring` is gray—verify contrast on all interactive states.
+  - Add explicit semantic tokens: `--success`, `--warning`, `--info` with matching text and bg pairs for badges/toasts.
+  - Normalize button states (hover/active/disabled) with tokenized elevations and not raw rgba whites.
+
+Recommended token adjustments (illustrative, not applied yet):
+- `--primary: oklch(0.72 0.2 275);`  // purple-violet, non-blue, high chroma
+- `--accent: oklch(0.80 0.12 145);`  // emerald accent for confirmations
+- Add `--focus: oklch(0.78 0.19 275);` and use for focus-visible outline
+
+## Information architecture (high-level)
+- Global top bar: workspace switcher, search/command, status, quick actions.
+- Left sidebar: Specialist Library (browse, pin, filter), Teams, Templates.
+- Center: Conversation Feed (single thread, multi-agent participation) + message controls.
+- Right panel: Context/Memory Inspector, Task/Project details, Integrations.
+- Bottom: Composer (input, tools, send), with expand-to-advanced controls.
+
+## Layout proposal (desktop)
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ TOP BAR: [☰] Workspace ▾ | Search/Command (⌘K)                Status   ⋯   │
+├───────────────┬───────────────────────────────────────────────┬──────────────┤
+│ LEFT SIDEBAR  │                CONVERSATION FEED               │   INSPECTOR  │
+│ Specialists   │  ┌──────────────────────────────────────────┐  │  Memory      │
+│ • Pinned       │  │  AI/User messages (timestamp, actions)  │  │  Tasks       │
+│ • Library      │  │  …                                      │  │  Details     │
+│ • Teams        │  └──────────────────────────────────────────┘  │  Integrations│
+│ • Templates    │                                               │              │
+├───────────────┴───────────────────────────────────────────────┴──────────────┤
+│ COMPOSER:  [+]  Type your message…   (Attach) (Voice) (Tools)        [Send]  │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+Responsive behavior
+- ≤1024px: collapse right panel into a slide-over; keep feed full-width.
+- ≤768px: left sidebar becomes a drawer; bottom tab bar for primary sections.
+
+## Core interactions
+- Message actions (hover or tap hold): copy, pin, quote, create task, summarize, fork to sandbox.
+- Multi-AI: toggle which AI responds next, or aggregate; show source labels per message.
+- Composer enhancements: slash commands, variable chips (project, deadline), token count, send modifiers (Shift+Enter newline, Enter send).
+- Task extraction: Super Organizer proposes tasks with priority badges; confirm → auto-schedule.
+
+## Microcopy principles
+- Action-first, low-ambiguity labels (“Create task,” “Schedule,” “Summarize”).
+- Surface consequences in UI (“Will post to Calendar”).
+- Keep timestamps relative by default; absolute on hover.
+
+## Accessibility & motion
+- Keyboard: full traversal (Tab order: top bar → left → feed → right → composer). Provide skip-to-composer.
+- Focus: 2px outline using `--focus` token; never rely on color alone.
+- Contrast: meet 4.5:1 for text, 3:1 for UI components and focus.
+- Motion: respect `prefers-reduced-motion`; no essential info via animation only.
+
+## Acceptance criteria for layout sign-off
+- The five regions exist and resize predictably.
+- Left/right panels dock/collapse; state persists.
+- Composer supports basic attachments and tool affordances.
+- Feed supports per-message actions and shows the speaking agent clearly.
+
+## Next steps (proposed)
+1) Confirm this layout. If changes, annotate the wireframe above.
+2) Theme pass: finalize tokens and elevate dark theme (no indigo/blue).
+3) Component spec: header, sidebar, feed message, composer, inspector.
+4) Prototype single-screen HTML in `.superdesign/design_iterations` for review.
+
+— End of note —

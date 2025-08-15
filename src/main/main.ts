@@ -10,9 +10,10 @@ const createWindow = () => {
     }
   });
 
+  const port = process.env.PORT || '1212';
   mainWindow.loadURL(
     process.env.NODE_ENV === 'development'
-      ? 'http://localhost:1212'
+      ? `http://localhost:${port}`
       : 'file:///index.html'
   );
 

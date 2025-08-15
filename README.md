@@ -20,6 +20,35 @@
 
 </div>
 
+## BrainTrust Circle Overview
+
+BrainTrust Circle is a desktop‑first workspace built on this boilerplate: one shared conversation feed, a Super Organizer that turns talk into action, and 899+ specialists you can swap in as needed. Users design the room (colors, panels, workflows), and the system timestamps decisions and files the receipts.
+
+- Vision and tone: `VISION-STATEMEmmmNT_passion.md`
+- Architecture (short): `BrainTrust_circle-main/docs/architecture/executive-summary.md`
+- Architecture (full): `.superdesign/design_iterations/architecture.md`
+ - Web App V1 lives in: `BrainTrust_circle-main/` (labeled in its README)
+
+### Project Task List (UI-first)
+
+Immediate
+- Wire `specialist-library` to use the web app `AgentLibraryPanel`
+- Add Team Templates UI in `WorkspaceBuilder` using `teamTemplateStore`
+- Replace remaining inline colors in `WorkspaceLayout` with CSS vars
+- Option: Apply last-used template on launch (toggle)
+- Smoke test panel toggles, template seeds, theme persistence
+
+Next
+- Persist panels/templates/themes in appData DB (beyond localStorage)
+- Plug in web `ChatFeed` and `OrganizerPanel` as panels
+- Import-from-web wizard (agents, summaries)
+- Keyboard shortcuts for Builder/Theme/Panels
+
+Later
+- Team-aware template sharing and sync
+- Integrate `themeValidationService` from the web app
+- Provider connectors UI (BYO AI subs)
+
 ## Install
 
 Clone the repo and install dependencies:

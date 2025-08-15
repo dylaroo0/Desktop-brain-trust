@@ -8,7 +8,8 @@ electron-react-boilerplate-main/
 │   ├── renderer/                # Your React application
 │   │   ├── app/                 # Core app structure
 │   │   │   ├── components/      # Reusable UI components
-│   │   │   │   └── WorkspaceLayout.tsx  # Golden Layout implementation
+│   │   │   │   ├── WorkspaceLayout.tsx  # Golden Layout implementation
+│   │   │   │   └── PanelSwitcher.tsx    # Floating toggle for panels
 │   │   │   ├── pages/           # Page containers
 │   │   │   │   └── CounterPage/ # Your main workspace
 │   │   │   │       ├── CounterPage.tsx   # Main UI
@@ -16,6 +17,8 @@ electron-react-boilerplate-main/
 │   │   │   ├── store/           # State management (Redux Toolkit)
 │   │   │   │   ├── config/      # Configuration system
 │   │   │   │   ├── specialists/ # Specialist registry
+│   │   │   │   ├── panels/      # Enabled-panels registry (no deps)
+│   │   │   │   │   └── panelStore.ts
 │   │   │   │   └── index.ts     # Store setup
 │   │   │   ├── index.tsx        # App entry point
 │   │   │   └── preload.ts       # Preload script for Electron

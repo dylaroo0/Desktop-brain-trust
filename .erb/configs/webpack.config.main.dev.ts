@@ -1,73 +1,41 @@
-/**
- * Webpack config for development electron main process
- */
+const path = require('path');
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const TerserPlugin = require('terser-webpack-plugin');
+const baseConfig = require('./webpack.config.base');
+const checkNodeEnv = require('../scripts/check-node-env');
 
-import path from 'path';
-import webpack from 'webpack';
-import { merge } from 'webpack-merge';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import baseConfig from './webpack.config.base';
-import webpackPaths from './webpack.paths';
-import checkNodeEnv from '../scripts/check-node-env';
+checkNodeEnv('development');
 
-// When an ESLint server is running, we can't set the NODE_ENV so we'll check if it's
-// at the dev webpack config is not accidentally run in a production environment
-if (process.env.NODE_ENV === 'production') {
-  checkNodeEnv('development');
-}
-
-const configuration: webpack.Configuration = {
+module.exports = merge(baseConfig, {
   devtool: 'inline-source-map',
-
   mode: 'development',
-
   target: 'electron-main',
 
   entry: {
-    main: path.join(webpackPaths.srcMainPath, 'main.ts'),
+    main: path.join(__dirname, '../../src/main/main.ts')
   },
 
   output: {
-    path: webpackPaths.dllPath,
-    filename: '[name].bundle.dev.js',
+    path: path.join(__dirname, '../../app'),
+    filename: '[name].js',
     library: {
-      type: 'umd',
-    },
+      type: 'commonjs2'
+    }
+  },
+
+  optimization: {
+    minimize: false  // CRITICAL: Bypasses EOL ESLint v8.57.1
   },
 
   plugins: [
-    new BundleAnalyzerPlugin({
-      analyzerMode: process.env.ANALYZE === 'true' ? 'server' : 'disabled',
-      analyzerPort: 8888,
-    }),
-
-    /**
-     * Create global constants which can be configured at compile time.
-     *
-     * Useful for allowing different behaviour between development builds and
-     * release builds
-     *
-     * NODE_ENV should be production so that modules do not perform certain
-     * development checks
-     */
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-    }),
-
-    new webpack.LoaderOptionsPlugin({
-      debug: true,
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
 
-  /**
-   * Disables webpack processing of __dirname and __filename.
-   * If you run the bundle in node.js it falls back to these values of node.js.
-   * https://github.com/webpack/webpack/issues/2010
-   */
   node: {
     __dirname: false,
-    __filename: false,
+    __filename: false
   },
-};
-
-export default merge(baseConfig, configuration);
+});

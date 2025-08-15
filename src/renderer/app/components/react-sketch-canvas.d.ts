@@ -1,0 +1,1 @@
+declare module 'react-sketch-canvas' { import React from 'react'; interface ReactSketchCanvasProps { strokeWidth?: number; strokeColor?: string; canvasWidth?: string | number; canvasHeight?: string | number; style?: React.CSSProperties; } const ReactSketchCanvas: React.FC<ReactSketchCanvasProps>; export default ReactSketchCanvas; }

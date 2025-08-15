@@ -1,0 +1,1 @@
+.sketchContainer { margin: 15px 0; } .controls { display: flex; gap: 10px; margin-top: 10px; } .controls button { background: #42b983; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; } .controls button:last-child { background: #4a6cf7; }

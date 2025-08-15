@@ -1,0 +1,19 @@
+# BMad Master Controller
+
+controller:
+  name: bmad-master
+  description: Master entrypoint for the BMad method (Greenfield‑only)
+  team_bundle: BrainTrust_circle-main/.bmad-core/agent-teams/team-greenfield-only.yaml
+  default_workflow: BrainTrust_circle-main/.bmad-core/workflows/greenfield-fullstack.yaml
+  orchestrator_agent: BrainTrust_circle-main/.bmad-core/agents/bmad-orchestrator.md
+  master_agent: BrainTrust_circle-main/.bmad-core/agents/bmad-master.md
+
+startup_commands:
+  - /workflows
+  - /workflow-start greenfield-fullstack
+  - /workflow-status
+
+notes:
+  - Switch team bundle by changing team_bundle to another file in .bmad-core/agent-teams/.
+  - Switch workflow by changing default_workflow to any file in .bmad-core/workflows/.
+  - Commands are for tools that support slash-style workflow control.

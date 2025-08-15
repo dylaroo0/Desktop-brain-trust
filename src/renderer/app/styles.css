@@ -1,0 +1,27 @@
+.react-grid-layout {
+  background: #f0f0f0;
+  border: 1px dashed #ccc;
+  padding: 10px;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.grid-item {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.grid-item:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.react-resizable-handle {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmYwMCIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iNnB4Ij48ZyBvcGFjaXR5PSIwLjMwMiI+PHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  padding: 0 3px 3px 0;
+  z-index: 1;
+  cursor: se-resize;
+}
